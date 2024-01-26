@@ -14,19 +14,19 @@ set(0, 'defaultTextInterpreter', 'latex');
 
     % Plot the original image
     figure(1);
-    imagesc(X,[0 255]);
+    imagesc(X);
     title('Original image');
     axis equal; axis off;colormap('gray');
 
     % Plot the noisy observation
     figure(2);
-    imagesc(Y, [0 255]); hold on
+    imagesc(Y); hold on
     axis equal; axis off;colormap('gray');
     title('Blurred and noisy observation');
  
     % Plot the MMSE of x
     figure(3);
-    imagesc(meanSamples,[0 255]);
+    imagesc(meanSamples);
     axis equal; axis off;colormap('gray');
     title('MMSE estimate of x');
     

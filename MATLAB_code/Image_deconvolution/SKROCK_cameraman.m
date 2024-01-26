@@ -53,7 +53,8 @@ alpha = 0.044; %%% hyperparameter of the prior
 
 % Lipschitz Constants
 Lf = 1/sigma2; %%% Lipschitz constant of the likelihood
-Lg = 1/lambda; %%% Lipshcitz constant of the prior
+%Lg = 1/lambda; %%% Lipshcitz constant of the prior
+Lg = 1/sigma2;
 Lfg = Lf + Lg; %%% Lipschitz constant of the model
 
 % Gradients, proximal and \log\pi trace generator function

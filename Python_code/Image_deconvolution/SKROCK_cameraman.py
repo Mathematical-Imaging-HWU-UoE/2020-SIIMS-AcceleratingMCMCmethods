@@ -7,20 +7,22 @@ Zygalakis, SIAM Journal on Imaging Sciences, Vol. 13, No. 2, 2020
 Permalink: https://doi.org/10.1137/19M1283719   
 @author: Luis Vargas Mieles
 """
-
+#%%
 # initialize the random number generator to make the results repeatable
 # initialize the generator using a seed of 10
 import random
 random.seed(10)
 
+import sys
+sys.path.append("C:/Users/teresa-klatzer/code/2020-SIIMS-AcceleratingMCMCmethods/Python_code/Image_deconvolution/functions")
 import numpy as np
 from skimage import data
 from skimage.transform import resize
-from functions.chambolle_prox_TV import chambolle_prox_TV
-from functions.TVnorm import TVnorm
-from functions.SKROCK import SKROCK
-from functions.plot_results_SKROCK import plot_results_SKROCK
-from functions.cshift import cshift
+from chambolle_prox_TV import chambolle_prox_TV
+from TVnorm import TVnorm
+from SKROCK import SKROCK
+from plot_results_SKROCK import plot_results_SKROCK
+from cshift import cshift
 from tqdm import tqdm
 import time
 
@@ -30,7 +32,7 @@ x = data.camera() # Cameraman image to be used for the experiment
 x = resize(x, (N,N),preserve_range=True,anti_aliasing=False) # 256x256 dim
 
 # function handle for uniform blur operator (5x5)
-h = np.array([1, 1, 1, 1, 1])
+h = np.array([1, 1, 1])
 lh = len(h)
 h = h/np.sum(h)
 h = np.concatenate((h,np.zeros(N-lh)))
@@ -79,8 +81,8 @@ nStagesROCK = 10
 # fraction of the maximum step-size allowed in SK-ROCK (0,1]
 percDeltat = 0.5
 
-nSamplesBurnIn = int(6e2) # number of samples to produce in the burn-in stage
-nSamples = int(2e3) # number of samples to produce in the sampling stage
+nSamplesBurnIn = 1#int(6e2) # number of samples to produce in the burn-in stage
+nSamples = 1#int(2e3) # number of samples to produce in the sampling stage
 XkSKROCK = y # Initial condition
 logPiTrace=np.zeros(nSamplesBurnIn+nSamples)
 logPiTrace[0]=logPi(XkSKROCK)
